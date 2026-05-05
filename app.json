@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "ZenSpace",
+    "slug": "zenspace",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#f5f1ec"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.zenspace.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#f5f1ec"
+      },
+      "package": "com.zenspace.app"
+    }
+  }
+}
