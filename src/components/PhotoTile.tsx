@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface Props {
@@ -7,22 +7,31 @@ interface Props {
   label?: string;
   borderRadius?: number;
   style?: object;
+  imageSource?: any;
 }
 
-export default function PhotoTile({ palette, label, borderRadius = 16, style }: Props) {
+export default function PhotoTile({ palette, label, borderRadius = 16, style, imageSource }: Props) {
   return (
-    <LinearGradient
-      colors={palette}
-      start={{ x: 0.1, y: 0 }}
-      end={{ x: 0.85, y: 1 }}
-      style={[styles.fill, { borderRadius }, style]}
-    >
-      {/* soft top highlight */}
-      <View style={styles.highlight} />
-      {/* horizon line */}
-      <View style={styles.horizon} />
-      {label && <Text style={styles.label}>{label}</Text>}
-    </LinearGradient>
+    <View style={[styles.fill, { borderRadius }, style]}>
+      {imageSource ? (
+        <Image source={imageSource} style={styles.image} resizeMode="cover" />
+      ) : (
+        <LinearGradient
+          colors={palette}
+          start={{ x: 0.1, y: 0 }}
+          end={{ x: 0.85, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+      )}
+      {/* subtle vignette overlay */}
+      <LinearGradient
+        colors={['transparent', 'rgba(0,0,0,0.35)']}
+        style={StyleSheet.absoluteFill}
+      />
+      {label && !imageSource && (
+        <Text style={styles.label}>{label}</Text>
+      )}
+    </View>
   );
 }
 
@@ -30,23 +39,12 @@ const styles = StyleSheet.create({
   fill: {
     flex: 1,
     overflow: 'hidden',
+    backgroundColor: '#1a1a1a',
   },
-  highlight: {
-    position: 'absolute',
-    top: -40,
-    left: -40,
-    right: -40,
-    height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.09)',
-    borderRadius: 999,
-  },
-  horizon: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: '32%',
-    height: 1,
-    backgroundColor: 'rgba(255,255,255,0.10)',
+  image: {
+    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
   },
   label: {
     position: 'absolute',

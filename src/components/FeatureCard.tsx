@@ -14,7 +14,7 @@ export default function FeatureCard({ track, onPress }: Props) {
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [styles.card, pressed && { opacity: 0.92 }]}>
       <View style={styles.imageWrapper}>
-        <PhotoTile palette={track.palette} label={track.label} borderRadius={18} />
+        <PhotoTile palette={track.palette} label={track.label} borderRadius={18} imageSource={track.image} />
         <View style={styles.pillPos}>
           <CategoryPill kind={track.kind} />
         </View>
@@ -31,48 +31,16 @@ export default function FeatureCard({ track, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
-  card: {
-    width: 200,
-    gap: 10,
-  },
-  imageWrapper: {
-    width: '100%',
-    aspectRatio: 1 / 1.05,
-    borderRadius: 18,
-    overflow: 'hidden',
-  },
-  pillPos: {
-    position: 'absolute',
-    top: 12,
-    left: 12,
-  },
+  card: { width: 200, gap: 10 },
+  imageWrapper: { width: '100%', aspectRatio: 1 / 1.05, borderRadius: 18, overflow: 'hidden' },
+  pillPos: { position: 'absolute', top: 12, left: 12 },
   durationBadge: {
-    position: 'absolute',
-    bottom: 12,
-    right: 12,
-    backgroundColor: 'rgba(0,0,0,0.38)',
-    borderRadius: 99,
-    paddingHorizontal: 7,
-    paddingVertical: 3,
+    position: 'absolute', bottom: 12, right: 12,
+    backgroundColor: 'rgba(0,0,0,0.38)', borderRadius: 99,
+    paddingHorizontal: 7, paddingVertical: 3,
   },
-  durationText: {
-    fontSize: 10,
-    color: 'rgba(255,255,255,0.88)',
-    fontFamily: 'monospace',
-  },
-  meta: {
-    paddingHorizontal: 2,
-    gap: 3,
-  },
-  title: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: colors.ink,
-    letterSpacing: 0.2,
-  },
-  sub: {
-    fontSize: 12,
-    color: colors.ink3,
-    letterSpacing: 0.2,
-  },
+  durationText: { fontSize: 10, color: 'rgba(255,255,255,0.88)', fontFamily: 'monospace' },
+  meta: { paddingHorizontal: 2, gap: 3 },
+  title: { fontSize: 15, fontWeight: '600', color: colors.ink, letterSpacing: 0.2 },
+  sub: { fontSize: 12, color: colors.ink3, letterSpacing: 0.2 },
 });

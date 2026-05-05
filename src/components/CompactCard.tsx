@@ -14,7 +14,7 @@ export default function CompactCard({ track, onPress }: Props) {
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [styles.card, pressed && { opacity: 0.92 }]}>
       <View style={styles.imageWrapper}>
-        <PhotoTile palette={track.palette} label={track.label} borderRadius={14} />
+        <PhotoTile palette={track.palette} label={track.label} borderRadius={14} imageSource={track.image} />
         <View style={styles.pillPos}>
           <CategoryPill kind={track.kind} />
         </View>
@@ -31,47 +31,16 @@ export default function CompactCard({ track, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
-  card: {
-    width: 138,
-    gap: 9,
-  },
-  imageWrapper: {
-    width: '100%',
-    aspectRatio: 1 / 1.2,
-    borderRadius: 14,
-    overflow: 'hidden',
-  },
-  pillPos: {
-    position: 'absolute',
-    top: 9,
-    left: 9,
-  },
+  card: { width: 138, gap: 9 },
+  imageWrapper: { width: '100%', aspectRatio: 1 / 1.2, borderRadius: 14, overflow: 'hidden' },
+  pillPos: { position: 'absolute', top: 9, left: 9 },
   durationBadge: {
-    position: 'absolute',
-    bottom: 9,
-    right: 9,
-    backgroundColor: 'rgba(0,0,0,0.38)',
-    borderRadius: 99,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
+    position: 'absolute', bottom: 9, right: 9,
+    backgroundColor: 'rgba(0,0,0,0.38)', borderRadius: 99,
+    paddingHorizontal: 6, paddingVertical: 2,
   },
-  durationText: {
-    fontSize: 9,
-    color: 'rgba(255,255,255,0.88)',
-    fontFamily: 'monospace',
-  },
-  meta: {
-    paddingHorizontal: 2,
-    gap: 2,
-  },
-  title: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: colors.ink,
-    letterSpacing: 0.2,
-  },
-  sub: {
-    fontSize: 11,
-    color: colors.ink3,
-  },
+  durationText: { fontSize: 9, color: 'rgba(255,255,255,0.88)', fontFamily: 'monospace' },
+  meta: { paddingHorizontal: 2, gap: 2 },
+  title: { fontSize: 13, fontWeight: '600', color: colors.ink, letterSpacing: 0.2 },
+  sub: { fontSize: 11, color: colors.ink3 },
 });
